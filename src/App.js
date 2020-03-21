@@ -1,4 +1,5 @@
 import React from "react";
+
 import logo from "./logo.svg";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -10,10 +11,20 @@ import Zoom from "@material-ui/core/Zoom";
 import Slide from "@material-ui/core/Slide";
 import pic_cat2 from "./pic/cat2.jpg";
 import useStyle from "./style/index";
-import { Grid } from "@material-ui/core";
+import { Grid, Link, Button, Avatar } from "@material-ui/core";
 import CreateIcon from "@material-ui/icons/Create";
 import PaletteIcon from "@material-ui/icons/Palette";
 import CodeIcon from "@material-ui/icons/Code";
+import AnchorLink from "react-anchor-link-smooth-scroll";
+import Tooltip from "@material-ui/core/Tooltip";
+
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import GitHubIcon from "@material-ui/icons/GitHub";
 
 import pic_git from "./pic/git.png";
 import pic_gitlab from "./pic/gitlab.png";
@@ -46,6 +57,10 @@ import pic_uwsgi from "./pic/uwsgi.png";
 import pic_vagrant from "./pic/vagrant.png";
 import pic_vue from "./pic/vue.png";
 import pic_gas from "./pic/gas.png";
+import pic_chatbot from "./pic/chatbot.png";
+import pic_gas_app from "./pic/gas_app.png";
+import pic_react_logo from "./pic/react_logo.png";
+import pic_my from "./pic/my.png";
 
 const logos = [
   pic_html,
@@ -78,8 +93,19 @@ const logos = [
   pic_ibmcloud,
   pic_ibmwatson,
   pic_gcp,
-  pic_gas,
+  pic_gas
 ];
+
+const WorkBox = props => {
+  const classes = useStyle();
+  return (
+    <Grid item>
+      <Tooltip title={props.title} placement="top" arrow>
+        <img src={props.pic} className={classes.workPic} />
+      </Tooltip>
+    </Grid>
+  );
+};
 
 const ServiceBox = props => {
   const classes = useStyle();
@@ -106,11 +132,11 @@ const ServiceBox = props => {
 };
 
 const text1 =
-  "お客様の要望をヒアリングし、現状の問題点を洗い出し、効果的なプランを作成いたします。制作ではデザインに入る前の事前の準備が特に重要になります。何が必要で何が必要でないのかを判断し、費用対効果の高いWebサイトを作るための土台を作ります。";
+  "お客様の要望をヒアリングし、現状の問題点を洗い出し、効果的なプランを作成いたします。認識の齟齬が発生しないために、最適な開発手法のご提案を行います。(アジャイル/ウォーターフォール)　また、より良いUI・UXを追及するためのご提案をさせていただきます。";
 const text2 =
   "ヒアリングに基づいたプランに沿って、デザインを作成いたします。人の使うものであることを常に意識して、使う人が迷わない、目的を達成できるデザインを心がけています。インターフェースの重要性が増す中でデザインの役割を理解し、そのプランに最適な提案をさせていただきます。";
 const text3 =
-  "デザインの意図を理解し、動きや効果を適切に使用することでWebサイトの仕上がりは大きく変わります。スマートフォンサイト、ワードプレスを使用した更新性の高いサイト、Javascriptを使用した動きのあるサイトなど、様々なサイトのコーディングを行っております。";
+  "デザインを再現するだけでなく、保守性の高いコードでの実装に努めることで、柔軟な変更対応が可能な状態を目指します。また、処理速度にもこだわり「UXを向上させる」ことをモチベーションとしてコーディングに取り組みます。";
 
 function App() {
   const classes = useStyle();
@@ -120,7 +146,8 @@ function App() {
       <Typography component="div">
         <Slide in={true}>
           <Box
-            my={10}
+            id="top"
+            mt={15}
             ml={3}
             fontFamily="Roboto"
             letterSpacing={6}
@@ -130,8 +157,55 @@ function App() {
             Shimizu's Portfolio
           </Box>
         </Slide>
+        <Box pr={10} pb={5} fontFamily="Roboto">
+          <Grid
+            container
+            direction="row"
+            spacing={2}
+            alignItems="center"
+            justify="flex-end"
+          >
+            <Grid item>
+              <Button>
+                <AnchorLink
+                  href="#service"
+                  style={{ textDecoration: "none", color: "initial" }}
+                  children="SERVICE"
+                />
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button>
+                <AnchorLink
+                  href="#works"
+                  style={{ textDecoration: "none", color: "initial" }}
+                  children="WORKS"
+                />
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button>
+                <AnchorLink
+                  href="#aboutMe"
+                  style={{ textDecoration: "none", color: "initial" }}
+                  children="ABOUT ME"
+                />
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button>
+                <AnchorLink
+                  href="#technologies"
+                  style={{ textDecoration: "none", color: "initial" }}
+                  children="TECHNOLOGIES"
+                />
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
         <img src={pic_cat2} alt="pic1" className={classes.media} />
         <Box
+          id="service"
           my={5}
           fontFamily="Helvetica Neue"
           letterSpacing={1}
@@ -140,40 +214,42 @@ function App() {
         >
           Service
         </Box>
-        <Grid
-          container
-          direction="row"
-          alignItems="flex-start"
-          justify="center"
-          spacing={10}
-        >
-          <Grid item>
-            <ServiceBox
-              title="ディレクション"
-              title2="DIRECTION"
-              icon={<CreateIcon fontSize="large" />}
-              text={text1}
-            />
+        <Box mb={15}>
+          <Grid
+            container
+            direction="row"
+            alignItems="flex-start"
+            justify="center"
+            spacing={10}
+          >
+            <Grid item>
+              <ServiceBox
+                title="ディレクション"
+                title2="DIRECTION"
+                icon={<CreateIcon fontSize="large" />}
+                text={text1}
+              />
+            </Grid>
+            <Grid item>
+              <ServiceBox
+                title="デザイン"
+                title2="DESIGN"
+                icon={<PaletteIcon fontSize="large" />}
+                text={text2}
+              />
+            </Grid>
+            <Grid item>
+              <ServiceBox
+                title="コーディング"
+                title2="CODING"
+                icon={<CodeIcon fontSize="large" />}
+                text={text3}
+              />
+            </Grid>
           </Grid>
-          <Grid item>
-            <ServiceBox
-              title="デザイン"
-              title2="DESIGN"
-              icon={<PaletteIcon fontSize="large" />}
-              text={text2}
-            />
-          </Grid>
-          <Grid item>
-            <ServiceBox
-              title="コーディング"
-              title2="CODING"
-              icon={<CodeIcon fontSize="large" />}
-              text={text3}
-            />
-          </Grid>
-        </Grid>
-        <img src={pic_cat2} alt="pic1" className={classes.media} />
+        </Box>
         <Box
+          id="works"
           mt={15}
           mb={5}
           fontFamily="Helvetica Neue"
@@ -183,8 +259,15 @@ function App() {
         >
           Works
         </Box>
-        <img src={pic_cat2} alt="pic1" className={classes.media} />
+        <Box>
+          <Grid container direction="row" justify="center" spacing={6}>
+            <WorkBox pic={pic_chatbot} title="チャットボット" />
+            <WorkBox pic={pic_react_logo} title="自動化対応WEBツール" />
+            <WorkBox pic={pic_gas_app} title="web報告システム" />
+          </Grid>
+        </Box>
         <Box
+          id="aboutMe"
           mt={15}
           mb={5}
           fontFamily="Helvetica Neue"
@@ -194,8 +277,73 @@ function App() {
         >
           About Me
         </Box>
-        <img src={pic_cat2} alt="pic1" className={classes.media} />
+        <Grid
+          container
+          justify="center"
+          alignItems="center"
+          direction="column"
+          spacing={5}
+        >
+          <Grid item>
+            <Box component="p" fontSize="h6.fontSize">
+              都内にてWeb関連の開発をしております。 <br />
+              2017年:SIerの営業職として社会人スタート
+              <br />
+              2018年:「自分でシステムを作りたい」そんな衝動に駆られてエンジニアデビュー
+              <br />
+              基本フルスタック開発(たまにインフラまで)を経て現在に至る。
+              <br />
+              よくいる文系出身プログラマー
+              <br />
+            </Box>
+          </Grid>
+          <Grid item>
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              justify="center"
+              spacing={10}
+            >
+              <Grid item>
+                <img alt="avatar" src={pic_my} className={classes.avatar} />
+              </Grid>
+              <Grid item>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Name</TableCell>
+                      <TableCell>清水 僚太 Shimizu Ryota</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Age</TableCell>
+                      <TableCell>25</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>From</TableCell>
+                      <TableCell>愛知</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Live</TableCell>
+                      <TableCell>東京　足立区</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>DM</TableCell>
+                      <TableCell>otsukaresamannsatabasa@gmail.com</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Link href="https://github.com/shimizur0119" target="_blank">
+              <GitHubIcon fontSize="large" />
+            </Link>
+          </Grid>
+        </Grid>
         <Box
+          id="technologies"
           mt={15}
           mb={5}
           fontFamily="Helvetica Neue"
@@ -212,7 +360,7 @@ function App() {
           textAlign="center"
           fontSize="h5.fontSize"
         >
-          業務で利用実績のある技術です。
+          業務で利用実績のある技術
         </Box>
         <Grid
           container
@@ -224,11 +372,66 @@ function App() {
           {logos.map(e => {
             return (
               <Grid item>
-                <img src={e} className={classes.logo}/>
+                <img src={e} className={classes.logo} />
               </Grid>
             );
           })}
         </Grid>
+        <Box pr={10} py={10} fontFamily="Roboto">
+          <Grid
+            container
+            direction="row"
+            spacing={2}
+            alignItems="center"
+            justify="flex-end"
+          >
+            <Grid item>
+              <Button>
+                <AnchorLink
+                  href="#top"
+                  style={{ textDecoration: "none", color: "initial" }}
+                  children="TOP"
+                />
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button>
+                <AnchorLink
+                  href="#service"
+                  style={{ textDecoration: "none", color: "initial" }}
+                  children="SERVICE"
+                />
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button>
+                <AnchorLink
+                  href="#works"
+                  style={{ textDecoration: "none", color: "initial" }}
+                  children="WORKS"
+                />
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button>
+                <AnchorLink
+                  href="#aboutMe"
+                  style={{ textDecoration: "none", color: "initial" }}
+                  children="ABOUT ME"
+                />
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button>
+                <AnchorLink
+                  href="#technologies"
+                  style={{ textDecoration: "none", color: "initial" }}
+                  children="TECHNOLOGIES"
+                />
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
       </Typography>
     </ThemeProvider>
   );

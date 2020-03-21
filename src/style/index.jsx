@@ -15,6 +15,19 @@ const useStyles = makeStyles(theme => ({
   logo: {
     width: "auto",
     height: theme.spacing(10)
+  },
+  workPic: {
+    width: theme.spacing(50),
+    height: theme.spacing(50)
+  },
+  workBox: {
+    width: theme.spacing(40),
+    height: theme.spacing(40)
+  },
+  avatar: {
+    borderRadius: "50%",
+    width: theme.spacing(30),
+    height: theme.spacing(30)
   }
 }));
 
